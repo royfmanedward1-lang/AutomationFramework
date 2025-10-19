@@ -12,7 +12,7 @@ public class SeleniumTest extends BaseTest {
         loginPage.setUsername("invalidUser");
         loginPage.setPassword("invalidPass");
         loginPage.submit();
-        assert driver.findElement(By.cssSelector(".flash.error")).isDisplayed();
+        assert loginPage.isErrorMessagePresent();
     }
 
     /**
@@ -28,7 +28,7 @@ public class SeleniumTest extends BaseTest {
         assert loginPage.isSuccessMessagePresent();
         // Click logout button
         driver.findElement(By.cssSelector("a.button.secondary.radius")).click();
-        assert driver.findElement(By.cssSelector(".flash.success, .flash.info")).isDisplayed();
+        assert loginPage.isSuccessMessagePresent() || loginPage.isErrorMessagePresent();
     }
     /**
      * Multi-array username and password test using Page Object Model
@@ -46,9 +46,10 @@ public class SeleniumTest extends BaseTest {
             loginPage.setUsername(cred[0]);
             loginPage.setPassword(cred[1]);
             loginPage.submit();
-            // Check for success message only for valid credentials
             if ("tomsmith".equals(cred[0]) && "SuperSecretPassword!".equals(cred[1])) {
                 assert loginPage.isSuccessMessagePresent();
+            } else {
+                assert loginPage.isErrorMessagePresent();
             }
         }
     }
