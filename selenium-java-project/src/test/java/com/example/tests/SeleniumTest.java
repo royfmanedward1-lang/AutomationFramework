@@ -30,13 +30,17 @@ public class SeleniumTest {
             {"user3", "pass3"}
         };
         for (String[] cred : credentials) {
-            driver.get("http://example.com/login");
+            driver.get("https://the-internet.herokuapp.com/login");
             WebElement usernameField = driver.findElement(By.id("username"));
             usernameField.clear();
             usernameField.sendKeys(cred[0]);
             WebElement passwordField = driver.findElement(By.id("password"));
             passwordField.clear();
             passwordField.sendKeys(cred[1]);
+            driver.findElement(By.cssSelector("button[type='submit']")).click();
+            // Optionally, you can add a check for successful login
+            // WebElement successMessage = driver.findElement(By.className("flash success"));
+            // assertTrue(successMessage.isDisplayed());
         }
     }
 

@@ -1,2 +1,7 @@
 pytest
 requests
+allure-pytest
+schemathesis
+pydantic
+selenium
+webdriver-manager

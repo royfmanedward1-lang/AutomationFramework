@@ -3,33 +3,33 @@ name: API Test CI
 on: [push, pull_request]
 
 jobs:
-  python-tests:
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build with Maven
+        run: mvn -B package --file api-test-java/pom.xml
+      - name: Run Java tests with Allure
+        run: mvn -B test -Dallure.results.directory=target/allure-results --file api-test-java/pom.xml
+      - name: Upload Java test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: java-test-results
+          path: api-test-java/target/allure-results/
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: |
-          cd api-test-python
-          pip install -r requirements.txt
-      - name: Run tests
-        run: |
-          cd api-test-python
-          pytest
-
-  java-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+          python-version: '3.10'
+      - name: Install Python dependencies
+        run: pip install -r api-test-python/requirements.txt
+      - name: Run Python tests with Allure
+        run: pytest --alluredir=api-test-python/allure-results api-test-python/
+      - name: Upload Python test results
+        uses: actions/upload-artifact@v3
         with:
-          distribution: 'temurin'
-          java-version: '21'
-      - name: Run Maven tests
-        run: |
-          cd api-test-java
+          name: python-test-results
+          path: api-test-python/allure-results/
           mvn test
