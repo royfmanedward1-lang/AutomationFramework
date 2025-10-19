@@ -1,0 +1,5 @@
+com\example\tests\LoginPage.class
+com\example\tests\BaseTest.class
+com\example\tests\SeleniumTest.class
+com\example\tests\BasePage.class
+com\example\tests\GoogleHomePage.class

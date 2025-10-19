@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.example.tests.SeleniumTest" time="10.834" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.example.tests.SeleniumTest" time="5.076" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="25+37-LTS-3491"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\JavaOOP_Test\selenium-java-project"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\JavaOOP_Test\selenium-java-project\selenium-java-project"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="stdin.encoding" value="cp437"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\JavaOOP_Test\selenium-java-project"/>
+    <property name="user.dir" value="C:\JavaOOP_Test\selenium-java-project\selenium-java-project"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="java.runtime.version" value="25+37-LTS-3491"/>
     <property name="os.arch" value="amd64"/>
@@ -62,5 +62,5 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.example.tests.SeleniumTest" name="testMultipleUserLogin" time="10.834"/>
+  <testcase classname="com.example.tests.SeleniumTest" name="testMultipleUserLogin" time="5.076"/>
 </testsuite>
