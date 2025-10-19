@@ -7,12 +7,7 @@ This project is a Selenium Java application designed for automated testing of we
 ```
 selenium-java-project
 ├── src
-│   ├── main
-│   │   └── java
-│   │       └── com
-│   │           └── example
-│   │               └── model
-│   │                   └── Person.java
+│   ├─
 │   └── test
 │       └── java
 │           └── com
@@ -46,7 +41,6 @@ selenium-java-project
    ```
 
 ## Usage Guidelines
-- The `Person.java` file contains the `Person` class, which can be used to create person objects with a name and age.
 - The `SeleniumTest.java` file is where you will write your Selenium test cases to interact with web applications.
 
 ## Dependencies
