@@ -1,0 +1,20 @@
+{
+    "baseUrl": "http://www.automationpractice.pl",
+    "timeouts": {
+        "defaultTimeout": 30000,
+        "navigationTimeout": 60000
+    },
+    "products": {
+        "dress": {
+            "name": "Printed Dress",
+            "quantity": "2",
+            "size": "M"
+        }
+    },
+    "users": {
+        "standard": {
+            "email": "test@example.com",
+            "password": "Test123!"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "searchQueries": {
+        "valid": "Dress",
+        "noResults": "xyzabc123"
+    },
+    "products": {
+        "dress": {
+            "name": "Printed Summer Dress",
+            "size": "M",
+            "color": 2,
+            "quantity": 2
+        }
+    }
+}

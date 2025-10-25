@@ -1,0 +1,21 @@
+{
+  "name": "playwright-js",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report",
+    "install-browsers": "npx playwright install",
+    "test:allure": "npx playwright test --reporter=list,allure-playwright",
+    "allure:generate": "npx allure generate allure-results -o allure-report --clean",
+    "allure:open": "npx allure open allure-report"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.7.3",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.19.23",
+    "allure-commandline": "^2.24.1",
+    "allure-playwright": "^2.9.2"
+  }
+}

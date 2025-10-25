@@ -199,6 +199,21 @@ jobs:
           path: target/allure-report
 ```
 
+## Playwright (JavaScript)
+
+This repository also includes a small Playwright-based test scaffold under `playwright-js/` for modern, fast end-to-end tests using Playwright Test.
+
+Quick start:
+
+```powershell
+cd playwright-js
+.\setup-playwright.ps1
+npm test
+```
+
+The Playwright tests are independent from the Java Selenium project and are useful for cross-browser, fast E2E checks.
+
+
 ## Troubleshooting
 - **Element not found:** Check overlay handling and selectors.
 - **Browser compatibility:** Update WebDriverManager and browser drivers.

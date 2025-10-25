@@ -7,38 +7,55 @@ This project is a Selenium Java application designed for automated testing of we
 ```
 selenium-java-project
 ├── src
-│   ├─
 │   └── test
 │       └── java
 │           └── com
 │               └── example
 │                   └── tests
-│                       └── SeleniumTest.java
+│                       ├── SeleniumTest.java
+│                       └── TestRunner.java
+├── scripts
+│   └── .maven        # Local Maven installation
 ├── pom.xml
 └── README.md
 ```
 
-## Setup Instructions
-1. **Clone the Repository**
-   ```bash
-   git clone <repository-url>
-   cd selenium-java-project
-   ```
+## Running Tests
 
-2. **Install Maven**
-   Ensure that you have Maven installed on your machine. You can download it from [Maven's official website](https://maven.apache.org/download.cgi).
+### Option 1: Using Local Maven (Recommended, no install needed)
+The project includes a local Maven installation in `scripts/.maven/`. Use:
+```powershell
+# From the selenium-java-project folder:
+.\scripts\.maven\apache-maven-3.8.8\bin\mvn.cmd -Dtest=com.example.tests.SeleniumTest test
+```
 
-3. **Build the Project**
-   Run the following command to build the project and download the necessary dependencies:
-   ```bash
-   mvn clean install
-   ```
+### Option 2: Using System Maven
+If you have Maven installed globally:
+```powershell
+mvn -Dtest=com.example.tests.SeleniumTest test
+```
 
-4. **Run Tests**
-   To execute the Selenium tests, use the following command:
-   ```bash
-   mvn test
-   ```
+### Option 3: Direct Java Execution (No Maven)
+If you prefer not to use Maven, you can run tests directly with Java:
+
+1. Set JAVA_HOME to point to your JDK:
+```powershell
+# Example - adjust path to your JDK
+$env:JAVA_HOME = "C:\Program Files\Java\jdk-17.0.8"
+$env:PATH = "$env:JAVA_HOME\bin;" + $env:PATH
+```
+
+2. Compile and run:
+```powershell
+# Create target directory
+mkdir -Force target\test-classes
+
+# Compile test classes
+javac -cp "lib/*" -d target/test-classes src/test/java/com/example/tests/*.java
+
+# Run tests via TestRunner
+java -cp "target/test-classes;lib/*" com.example.tests.TestRunner
+```
 
 ## Usage Guidelines
 - The `SeleniumTest.java` file is where you will write your Selenium test cases to interact with web applications.

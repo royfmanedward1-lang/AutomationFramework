@@ -1,0 +1,42 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: |
+          cd playwright-js
+          npm ci
+      - name: Install Playwright browsers
+        run: |
+          cd playwright-js
+          npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: |
+          cd playwright-js
+          npx playwright test --reporter=list,junit,html
+      - name: Upload JUnit results
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-junit
+          path: playwright-js/test-results/results.xml
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-js/playwright-report

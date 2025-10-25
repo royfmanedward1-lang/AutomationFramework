@@ -1,53 +1,41 @@
 package com.example.tests;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.junit.After;
-import org.junit.Before;
+
+import com.example.base.BaseTest;
+import com.example.pages.LoginPage;
 import org.junit.Test;
-// import com.example.DataObject; // Removed because class does not exist
-import io.github.bonigarcia.wdm.WebDriverManager;
+import static org.junit.Assert.*;
 
-
-public class SeleniumTest {
-    private WebDriver driver;
-
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
+/**
+ * SeleniumTest - Legacy test refactored to use POM framework
+ * Now uses LoginPage page object for better maintainability
+ */
+public class SeleniumTest extends BaseTest {
+    
     /**
-     * Multi-array username and password test
+     * Multi-array username and password test - refactored to use POM
      */
     @Test
     public void testMultipleUserLogin() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open(getBaseUrl());
+        
         String[][] credentials = {
             {"user1", "pass1"},
             {"user2", "pass2"},
             {"user3", "pass3"}
         };
+        
         for (String[] cred : credentials) {
-            driver.get("https://the-internet.herokuapp.com/login");
-            WebElement usernameField = driver.findElement(By.id("username"));
-            usernameField.clear();
-            usernameField.sendKeys(cred[0]);
-            WebElement passwordField = driver.findElement(By.id("password"));
-            passwordField.clear();
-            passwordField.sendKeys(cred[1]);
-            driver.findElement(By.cssSelector("button[type='submit']")).click();
-            // Optionally, you can add a check for successful login
-            // WebElement successMessage = driver.findElement(By.className("flash success"));
-            // assertTrue(successMessage.isDisplayed());
-        }
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+            loginPage.login(cred[0], cred[1]);
+            
+            // All these credentials are invalid, so verify error
+            assertFalse("Login should fail for invalid credentials", 
+                       loginPage.isLoginSuccessful());
+            
+            // Return to login page for next attempt if needed
+            if (!loginPage.isOnLoginPage()) {
+                loginPage.open(getBaseUrl());
+            }
         }
     }
 }
